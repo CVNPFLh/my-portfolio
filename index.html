@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itachi Uchiha | عالم الشارينغان</title>
+    <style>
+        :root {
+            --itachi-red: #9a031e;
+            --akatsuki-black: #0a0a0a;
+            --text-gray: #ccc;
+            --sharingan-glow: rgba(154, 3, 30, 0.6);
+        }
 
+        body {
+            background-color: var(--akatsuki-black);
+            color: var(--text-gray);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* الهيدر مع تأثير غامض */
+        header {
+            background: linear-gradient(to bottom, #000, transparent);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--itachi-red);
+        }
+
+        .sharingan-icon {
+            width: 50px;
+            height: 50px;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* القسم الرئيسي */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://wallpapers.com/images/featured/itachi-uchiha-pictures-b5nxlm70d55eaf1d.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 0 0 20px var(--itachi-red);
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--itachi-red);
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: #151515;
+            border-left: 4px solid var(--itachi-red);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px var(--sharingan-glow);
+        }
+
+        h2 { color: white; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        /* الأزرار */
+        .btn {
+            background-color: var(--itachi-red);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* فوتر */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Sharingan_triple.svg" class="sharingan-icon" alt="Sharingan">
+</header>
+
+<div class="hero">
+    <h1>ITACHI UCHIHA</h1>
+    <p class="quote">"الناس يعيشون حياتهم بناءً على ما يعتبرونه صحيحاً وحقيقياً.."</p>
+</div>
+
+<div class="container">
+    <section class="card">
+        <h2>الغيهب المظلم: إيتاتشي</h2>
+        <p>مرحباً بك في موقع المعجبين المخصص لأسطورة كونوها وعضو منظمة الأكاتسكي. هنا نستعرض تاريخ إيتاتشي، قدراته، وتضحياته.</p>
+    </section>
+
+    <section class="card">
+        <h2>أبرز التقنيات</h2>
+        <ul>
+            <li><strong>تسكويومي (Tsukuyomi):</strong> الوهم اللانهائي.</li>
+            <li><strong>أماتيراسو (Amaterasu):</strong> اللهب الأسود الذي لا ينطفئ.</li>
+            <li><strong>سوسانو (Susanoo):</strong> الدرع والحارس المطلق.</li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>معرض الصور</h2>
+        <p>قريباً سيتم إضافة مجموعة من الخلفيات واللقطات السينمائية بجودة 4K.</p>
+        <a href="#" class="btn">استكشف المانجيكيو</a>
+    </section>
+
+    <div id="disqus_thread" style="margin-top: 50px;"></div>
+</div>
+
+<footer>
+    تم التصميم بواسطة رداء الغراب | CVNPFLh &copy; 2026
+</footer>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = "https://cvnpflh.github.io/my-portfolio/";
+        this.page.identifier = "itachi-fan-page";
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');
+        s.src = 'https://YOUR_SHORTNAME.disqus.com/embed.js'; 
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</body>
+</html>
