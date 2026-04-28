@@ -3,25 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itachi Uchiha | عالم الشارينغان</title>
+    <title>Itachi Uchiha | سليل الأوتشيها</title>
     <style>
         :root {
             --itachi-red: #9a031e;
             --akatsuki-black: #0a0a0a;
             --text-gray: #ccc;
-            --sharingan-glow: rgba(154, 3, 30, 0.6);
+            --sharingan-glow: rgba(154, 3, 30, 0.8);
         }
 
         body {
             background-color: var(--akatsuki-black);
             color: var(--text-gray);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
         }
 
-        /* الهيدر مع تأثير غامض */
+        /* زر الموسيقى */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(154, 3, 30, 0.2);
+            padding: 10px;
+            border-radius: 50px;
+            border: 1px solid var(--itachi-red);
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
         header {
             background: linear-gradient(to bottom, #000, transparent);
             padding: 20px;
@@ -30,9 +43,10 @@
         }
 
         .sharingan-icon {
-            width: 50px;
-            height: 50px;
-            animation: rotate 4s linear infinite;
+            width: 60px;
+            height: 60px;
+            animation: rotate 6s linear infinite;
+            filter: drop-shadow(0 0 5px var(--itachi-red));
         }
 
         @keyframes rotate {
@@ -40,78 +54,71 @@
             to { transform: rotate(360deg); }
         }
 
-        /* القسم الرئيسي */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('https://wallpapers.com/images/featured/itachi-uchiha-pictures-b5nxlm70d55eaf1d.jpg');
+                        url('https://images.alphacoders.com/202/202568.jpg');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 450px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-bottom: 1px solid #333;
         }
 
         .hero h1 {
             color: white;
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0;
+            letter-spacing: 5px;
             text-shadow: 0 0 20px var(--itachi-red);
         }
 
-        .quote {
-            font-style: italic;
-            color: var(--itachi-red);
-            margin-top: 10px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-        }
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
 
         .card {
-            background: #151515;
-            border-left: 4px solid var(--itachi-red);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            transition: 0.3s;
+            background: #111;
+            border: 1px solid #222;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px var(--sharingan-glow);
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; width: 4px; height: 100%;
+            background: var(--itachi-red);
         }
 
-        h2 { color: white; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        h2 { color: white; margin-top: 0; }
 
-        /* الأزرار */
-        .btn {
-            background-color: var(--itachi-red);
+        .btn-play {
+            background: var(--itachi-red);
+            border: none;
             color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 2px;
-            display: inline-block;
-            margin-top: 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
             font-weight: bold;
+            margin-right: 10px;
         }
 
-        /* فوتر */
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.8rem;
-            border-top: 1px solid #222;
-        }
+        footer { text-align: center; padding: 50px; color: #555; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
+
+<div class="music-player">
+    <button class="btn-play" onclick="toggleMusic()">تشغيل اللحن 🎵</button>
+    <audio id="itachi-theme" loop>
+        <source src="https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Itachi+Theme&filename=mt/MTI0NDQ3NjYxMjQ0NDgw_v_2bjf_2bR_2bX_2f_2b0.mp3" type="audio/mpeg">
+    </audio>
+    <span style="font-size: 12px; color: white;">Senya</span>
+</div>
 
 <header>
     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Sharingan_triple.svg" class="sharingan-icon" alt="Sharingan">
@@ -119,41 +126,43 @@
 
 <div class="hero">
     <h1>ITACHI UCHIHA</h1>
-    <p class="quote">"الناس يعيشون حياتهم بناءً على ما يعتبرونه صحيحاً وحقيقياً.."</p>
+    <p style="color: var(--itachi-red); font-size: 1.2rem; margin-top: 15px;">"أنت لا تملك ما يكفي من الكراهية.."</p>
 </div>
 
 <div class="container">
     <section class="card">
-        <h2>الغيهب المظلم: إيتاتشي</h2>
-        <p>مرحباً بك في موقع المعجبين المخصص لأسطورة كونوها وعضو منظمة الأكاتسكي. هنا نستعرض تاريخ إيتاتشي، قدراته، وتضحياته.</p>
+        <h2>المانجيكيو شارينغان</h2>
+        <p>إيتاتشي أوتشيها، العبقري الذي ضحى بكل شيء من أجل القرية وأخيه الصغير. قوته لا تكمن فقط في تقنياته، بل في ذكائه وقدرته على التخطيط للمستقبل.</p>
     </section>
 
     <section class="card">
-        <h2>أبرز التقنيات</h2>
-        <ul>
-            <li><strong>تسكويومي (Tsukuyomi):</strong> الوهم اللانهائي.</li>
-            <li><strong>أماتيراسو (Amaterasu):</strong> اللهب الأسود الذي لا ينطفئ.</li>
-            <li><strong>سوسانو (Susanoo):</strong> الدرع والحارس المطلق.</li>
-        </ul>
+        <h2>عالم الوهم (Genjutsu)</h2>
+        <p>بمجرد النظر في عينيه، قد ينتهي القتال قبل أن يبدأ. تقنية التسكويومي هي السجن الذي لا يمكن الهروب منه إلا بدم الأوتشيها.</p>
     </section>
 
-    <section class="card">
-        <h2>معرض الصور</h2>
-        <p>قريباً سيتم إضافة مجموعة من الخلفيات واللقطات السينمائية بجودة 4K.</p>
-        <a href="#" class="btn">استكشف المانجيكيو</a>
-    </section>
-
-    <div id="disqus_thread" style="margin-top: 50px;"></div>
+    <div id="disqus_thread"></div>
 </div>
 
 <footer>
-    تم التصميم بواسطة رداء الغراب | CVNPFLh &copy; 2026
+    Uchiha Clan Portal | 2026
 </footer>
 
 <script>
+    function toggleMusic() {
+        var audio = document.getElementById("itachi-theme");
+        var btn = document.querySelector(".btn-play");
+        if (audio.paused) {
+            audio.play();
+            btn.innerHTML = "إيقاف ⏸️";
+        } else {
+            audio.pause();
+            btn.innerHTML = "تشغيل اللحن 🎵";
+        }
+    }
+
     var disqus_config = function () {
         this.page.url = "https://cvnpflh.github.io/my-portfolio/";
-        this.page.identifier = "itachi-fan-page";
+        this.page.identifier = "itachi-final-version";
     };
     (function() { 
         var d = document, s = d.createElement('script');
