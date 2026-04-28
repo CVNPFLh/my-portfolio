@@ -3,193 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة المعلومات الوطنية - العراق</title>
+    <title>بوابة المعلومات الوطنية - خريطة العراق التفاعلية</title>
     <style>
         :root {
-            --iraq-red: #ce1126;
-            --iraq-green: #007a3d;
-            --iraq-black: #000000;
-            --bg-light: #f4f4f4;
-            --accent: #005a2d;
+            --iraq-red: #ce1126; --iraq-green: #007a3d; --iraq-black: #000000; --bg-light: #f4f4f4;
         }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; line-height: 1.6; }
+        header { background-color: var(--iraq-black); color: white; padding: 15px 0; text-align: center; border-bottom: 5px solid var(--iraq-red); }
+        
+        /* تنسيق الخريطة */
+        .map-section { background: white; padding: 30px; text-align: center; border-bottom: 1px solid #ddd; }
+        .map-container { max-width: 500px; margin: 0 auto; position: relative; }
+        .map-placeholder { width: 100%; height: auto; fill: #ddd; stroke: #fff; stroke-width: 2; transition: 0.3s; cursor: pointer; }
+        .map-placeholder:hover { fill: var(--iraq-green); }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-light);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* الهيدر العلوي */
-        header {
-            background-color: var(--iraq-black);
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            border-bottom: 5px solid var(--iraq-red);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .god-is-great {
-            color: var(--iraq-green);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* قسم الترحيب */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Iraq.svg/1200px-Flag_of_Iraq.svg.png');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        /* الحاوية الرئيسية */
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
-            display: grid;
-            grid-template-columns: 2.5fr 1fr;
-            gap: 20px;
-        }
-
-        /* المحتوى الأساسي */
-        .main-content {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            color: var(--iraq-red);
-            border-right: 5px solid var(--iraq-green);
-            padding-right: 15px;
-            margin-bottom: 20px;
-        }
-
-        .post-card {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-
-        .post-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* الشباك الجانبي */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .sidebar-box {
-            background: var(--accent);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .sidebar-box h3 {
-            margin-top: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 10px;
-        }
-
-        .list-unstyled {
-            list-style: none;
-            padding: 0;
-        }
-
-        .list-unstyled li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* الفوتر */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            background: var(--iraq-black);
-            color: #888;
-            margin-top: 50px;
-        }
-
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-        }
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 20px; }
+        .main-content { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        
+        .post-card { border: 1px solid #eee; padding: 20px; border-radius: 8px; margin-bottom: 30px; background: #fff; }
+        .info-box { background: #e8f5e9; padding: 15px; border-right: 5px solid var(--iraq-green); margin-bottom: 20px; display: none; }
+        
+        .sidebar-box { background: var(--iraq-black); color: white; padding: 20px; border-radius: 8px; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
-    <p class="logo-text">جمهورية العراق</p>
-    <p class="god-is-great">الله أكبر</p>
+    <p style="font-size: 1.5rem; font-weight: bold; margin: 0;">جمهورية العراق</p>
+    <p style="color: var(--iraq-green); font-size: 1.1rem; margin: 0;">بوابة المعلومات الوطنية</p>
 </header>
 
-<div class="hero">
-    <h1>بوابة المعلومات الوطنية</h1>
-    <p>منصة معرفية مخصصة لنشر البيانات التاريخية والإدارية عن مؤسسات الدولة</p>
-</div>
+<section class="map-section">
+    <h2>الخارطة الإدارية التفاعلية</h2>
+    <p>اضغط على المنطقة لعرض تفاصيل المحافظة</p>
+    <div class="map-container">
+        <svg viewBox="0 0 500 500" class="map-placeholder">
+            <path d="M50,150 L200,150 L200,300 L50,300 Z" onclick="showInfo('الأنبار', 'أكبر محافظات العراق مساحة، تشتهر بالزراعة والثروات المعدنية.')" />
+            <path d="M210,200 L260,200 L260,250 L210,250 Z" onclick="showInfo('بغداد', 'العاصمة والمركز السياسي والثقافي للبلاد.')" />
+            <text x="80" y="220" fill="black" style="font-size: 12px; pointer-events: none;">منطقة الأنبار</text>
+            <text x="215" y="230" fill="black" style="font-size: 10px; pointer-events: none;">بغداد</text>
+        </svg>
+    </div>
+
+    <div id="info-display" class="info-box">
+        <h3 id="info-title"></h3>
+        <p id="info-text"></p>
+    </div>
+</section>
 
 <div class="container">
     <div class="main-content">
-        <h2>آخر المنشورات والمعلومات</h2>
+        <h2>المقالات والتقارير</h2>
+        <article class="post-card">
+            <h3>تطور النظام السياسي</h3>
+            <p>نظرة تاريخية على تشكل الحكومات العراقية منذ التأسيس وحتى الدستور الحالي لعام 2005.</p>
+        </article>
         
-        <article class="post-card">
-            <h3>هيكلية الدولة العراقية</h3>
-            <p>يتكون نظام الحكم في العراق من ثلاث سلطات رئيسية: التشريعية (مجلس النواب)، التنفيذية (مجلس الوزراء ورئاسة الجمهورية)، والقضائية. يضمن الدستور الفصل بين هذه السلطات لضمان التوازن الديمقراطي.</p>
-        </article>
-
-        <article class="post-card">
-            <h3>محافظة الأنبار: العمق التاريخي والجغرافي</h3>
-            <p>تعد محافظة الأنبار أكبر محافظات العراق مساحة، وتمثل ثقلاً اقتصادياً وجغرافياً مهماً، حيث تضم مدناً عريقة وتاريخية كالفلوجة والرمادي، وتعتبر بوابة العراق الغربية نحو العالم العربي.</p>
-        </article>
-
-        <div style="background: #f9f9f9; padding: 20px; border: 2px dashed #ccc; text-align: center; border-radius: 8px;">
-            <p style="color: #888;">يمكنك إضافة منشوراتك الجديدة هنا عبر تعديل الكود وإضافة وسوم المقالات</p>
-        </div>
+        <div id="disqus_thread"></div>
     </div>
 
     <aside class="sidebar">
         <div class="sidebar-box">
-            <h3>روابط سريعة</h3>
-            <ul class="list-unstyled">
-                <li>• رئاسة الجمهورية</li>
-                <li>• مجلس الوزراء</li>
-                <li>• دستور العراق 2005</li>
-                <li>• الخارطة الإدارية</li>
-            </ul>
-        </div>
-
-        <div class="sidebar-box" style="background: #333;">
-            <h3>عن الموقع</h3>
-            <p style="font-size: 0.9rem;">هذا الموقع هو مشروع تعليمي معرفي يهدف لجمع المعلومات الرسمية المتاحة وتنسيقها لتكون مرجعاً سهلاً للباحثين والمواطنين.</p>
+            <h3>إحصائيات سريعة</h3>
+            <p>التعداد السكاني التقريبي: 43 مليون</p>
+            <p>عدد الوحدات الإدارية: 18 محافظة</p>
         </div>
     </aside>
 </div>
 
-<div class="footer">
-    <p>تم تطوير الموقع بواسطة CVNPFLh &copy; 2026</p>
-</div>
+<script>
+    function showInfo(title, text) {
+        document.getElementById('info-display').style.display = 'block';
+        document.getElementById('info-title').innerText = title;
+        document.getElementById('info-text').innerText = text;
+        // تمرير الشاشة للمعلومات
+        window.scrollTo({ top: document.getElementById('info-display').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    // كود Disqus (تأكد من وضع اسمك بدلاً من YOUR_SHORTNAME)
+    var disqus_config = function () {
+        this.page.url = "https://cvnpflh.github.io/my-portfolio/";
+        this.page.identifier = "iraq-map-page";
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://YOUR_SHORTNAME.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
 </body>
-</html
+</html>
