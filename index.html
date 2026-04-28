@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة المعلومات الحكومية العراقية</title>
+    <style>
+        :root {
+            --iraq-red: #ce1126;
+            --iraq-green: #007a3d;
+            --iraq-black: #000000;
+            --bg-light: #f4f4f4;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: #333;
+        }
+
+        header {
+            background-color: var(--iraq-black);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--iraq-red);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background: white;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--iraq-black);
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Iraq.svg/1200px-Flag_of_Iraq.svg.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .main-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar {
+            background: var(--iraq-green);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: var(--iraq-red);
+            border-right: 4px solid var(--iraq-green);
+            padding-right: 10px;
+        }
+
+        .info-card {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            color: white;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-text">جمهورية العراق</div>
+    <div style="color: var(--iraq-green); font-size: 14px;">الله أكبر</div>
+</header>
+
+<nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">الهيكل الحكومي</a>
+    <a href="#">تاريخ العراق</a>
+    <a href="#">المحافظات</a>
+</nav>
+
+<div class="hero">
+    <h1>بوابة المعلومات الوطنية</h1>
+    <p>منصة معرفية لاستعراض مؤسسات الدولة العراقية وتاريخها السياسي</p>
+</div>
+
+<div class="container">
+    <div class="main-content">
+        <h2>آخر التحديثات</h2>
+        <div class="info-card">
+            <h3>نبذة عن السلطة التنفيذية</h3>
+            <p>تتألف السلطة التنفيذية من رئيس الجمهورية ومجلس الوزراء، وتمارس صلاحياتها وفقاً للدستور العراقي الدائم.</p>
+        </div>
+        <div class="info-card">
+            <h3>النظام البرلماني</h3>
+            <p>يعد مجلس النواب العراقي السلطة التشريعية العليا في البلاد، المسؤول عن تشريع القوانين والرقابة على الأداء الحكومي.</p>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <h3>روابط سريعة</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 10px;">• دستور العراق</li>
+            <li style="margin-bottom: 10px;">• رئاسة الوزراء</li>
+            <li style="margin-bottom: 10px;">• مجلس النواب</li>
+            <li style="margin-bottom: 10px;">• الخارطة الإدارية</li>
+        </ul>
+    </div>
+</div>
+
+<div class="footer">
+    <p>تم تطوير الموقع كجهد معرفي مستقل | 2026</p>
+</div>
+
+</body>
+</html>
